@@ -1,3 +1,5 @@
+let displayValue = "";
+
 function add(a, b) {
   return a + b;
 }
@@ -14,6 +16,10 @@ function divide(a, b) {
   return a / b;
 }
 
+function evaluate() {
+  return 1;
+}
+
 function operate(operation, a, b) {
   switch (operation) {
     case 'addition':
@@ -27,6 +33,18 @@ function operate(operation, a, b) {
   }
 }
 
+function populateDisplay(str) {
+  const display = document.querySelector('.output');
+  if (!str) {
+    display.textContent = "";
+    displayValue = "";
+  }
+  else {
+    display.textContent += str;
+    displayValue += str;
+  }
+}
+
 function createKeyboard() {
   const keyboard = document.querySelector('.keyboard');
 
@@ -35,6 +53,9 @@ function createKeyboard() {
     key.classList.add('key');
     key.setAttribute('id', `${i}`);
     key.textContent = `${i}`;
+    key.addEventListener('click', () => {
+      populateDisplay(key.textContent);
+    });
 
     keyboard.appendChild(key);
   }
@@ -64,7 +85,7 @@ function createKeyboard() {
       name: 'clear',
       symbol: 'AC'
     },
-  ]
+  ];
 
   operators.forEach(operator => {
     const key = document.createElement('button');
@@ -72,7 +93,15 @@ function createKeyboard() {
     key.classList.add('operator');
     key.setAttribute('id', operator.name);
     key.textContent = operator.symbol;
-
+    if (operator.symbol == '=') {
+      key.addEventListener('click', () => evaluate());
+    }
+    else if (operator.symbol == 'AC') {
+      key.addEventListener('click', () => populateDisplay(""));
+    }
+    else {
+      key.addEventListener('click', () => populateDisplay(key.textContent));
+    }
     keyboard.appendChild(key);
   });
 }
