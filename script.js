@@ -1,5 +1,5 @@
 function add(a, b) {
-  return parseInt(a) + parseInt(b);
+  return Number(a) + Number(b);
 }
 
 function subtract(a, b) {
@@ -11,6 +11,10 @@ function multiply(a, b) {
 }
 
 function divide(a, b) {
+  if (b == 0) {
+    alert("Don't divide by zero... dummy");
+    return a;
+  }
   return a / b;
 }
 
@@ -23,7 +27,7 @@ function evaluate(expression) {
   const operators =[];
   
   for (let i = 0; i < expression.length; i++) {
-    if (!isNaN(expression[i])) {
+    if (!isNaN(expression[i]) || expression[i] == '.') {
       currentNum += expression[i];
       if (i == expression.length - 1) numbers.push(currentNum);
     }
@@ -33,8 +37,6 @@ function evaluate(expression) {
       currentNum = "";
     }
   }
-
-  console.log(numbers);
 
   // change to 'array.reduce()' 
   ['*', '/', '+', '-'].forEach(operation => {
@@ -51,7 +53,7 @@ function evaluate(expression) {
   });
 
   populateDisplay("");
-  populateDisplay(numbers[0]);
+  populateDisplay(Math.round(numbers[0] * 100) / 100);
 }
 
 function operate(operation, a, b) {
