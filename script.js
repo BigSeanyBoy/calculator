@@ -1,7 +1,7 @@
 let displayValue = "";
 
 function add(a, b) {
-  return a + b;
+  return parseInt(a) + parseInt(b);
 }
 
 function subtract(a, b) {
@@ -17,18 +17,59 @@ function divide(a, b) {
 }
 
 function evaluate() {
-  return 1;
+  const expression = displayValue.split("");
+
+  const numbers = [];
+  let currentNum = "";
+  
+  const operators =[];
+  
+  for (let i = 0; i < expression.length; i++) {
+    if (!isNaN(expression[i])) {
+      currentNum += expression[i];
+      if (i == expression.length - 1) numbers.push(currentNum);
+    }
+    else {
+      operators.push(expression[i]);
+      numbers.push(currentNum);
+      currentNum = "";
+    }
+  }
+
+  console.log(numbers);
+
+  // change to 'array.reduce()' 
+  ['*', '/', '+', '-'].forEach(operation => {
+    while (operators.includes(operation)) {
+      const index = operators.indexOf(operation);
+      const leftSide = numbers[index];
+      const rightSide = numbers[index + 1];
+
+      // console.log(numbers);
+      // console.log(operators);
+      // console.log(leftSide);
+      // console.log(rightSide);
+
+      const result = operate(operation, leftSide, rightSide);
+
+      numbers.splice(index, 2, result);
+      operators.splice(index, 1);
+    }
+  });
+
+  populateDisplay("");
+  populateDisplay(numbers[0]);
 }
 
 function operate(operation, a, b) {
   switch (operation) {
-    case 'addition':
+    case '+':
       return add(a, b);
-    case 'subtraction':
+    case '-':
       return subtract(a, b);
-    case 'multiplication':
+    case '*':
       return multiply(a, b);
-    case 'division':
+    case '/':
       return divide(a, b);
   }
 }
