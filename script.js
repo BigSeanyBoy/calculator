@@ -1,5 +1,3 @@
-let displayValue = "";
-
 function add(a, b) {
   return parseInt(a) + parseInt(b);
 }
@@ -16,8 +14,8 @@ function divide(a, b) {
   return a / b;
 }
 
-function evaluate() {
-  const expression = displayValue.split("");
+function evaluate(expression) {
+  expression = expression.split("");
 
   const numbers = [];
   let currentNum = "";
@@ -44,11 +42,6 @@ function evaluate() {
       const index = operators.indexOf(operation);
       const leftSide = numbers[index];
       const rightSide = numbers[index + 1];
-
-      // console.log(numbers);
-      // console.log(operators);
-      // console.log(leftSide);
-      // console.log(rightSide);
 
       const result = operate(operation, leftSide, rightSide);
 
@@ -78,11 +71,14 @@ function populateDisplay(str) {
   const display = document.querySelector('.output');
   if (!str) {
     display.textContent = "";
-    displayValue = "";
   }
   else {
+    operators = ['*', '/', '+', '-'];
+    if (operators.includes(str) 
+    && operators.some(symbol => display.textContent.split("").includes(symbol))) {
+      evaluate(display.textContent);
+    }
     display.textContent += str;
-    displayValue += str;
   }
 }
 
@@ -135,7 +131,10 @@ function createKeyboard() {
     key.setAttribute('id', operator.name);
     key.textContent = operator.symbol;
     if (operator.symbol == '=') {
-      key.addEventListener('click', () => evaluate());
+      key.addEventListener('click', () => {
+        const displayValue = document.querySelector('.output').textContent;
+        evaluate(displayValue);
+      });
     }
     else if (operator.symbol == 'AC') {
       key.addEventListener('click', () => populateDisplay(""));
