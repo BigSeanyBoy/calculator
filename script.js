@@ -60,6 +60,10 @@ function createKeyboard() {
       name: 'evaluate',
       symbol: '=',
     },
+    {
+      name: 'clear',
+      symbol: 'AC'
+    },
   ]
 
   operators.forEach(operator => {
