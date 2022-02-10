@@ -96,6 +96,8 @@ function createKeyboard() {
 
   for (let i = 2; i >= 0; i--) {
     const row = document.createElement('div');
+    row.classList.add('row');
+
     for (let j = 1; j < 4; j++) {
       const currentNum = 3 * i + j;
       const key = document.createElement('button');
@@ -120,6 +122,7 @@ function createKeyboard() {
   }
 
   const bottomRow = document.createElement('div');
+  bottomRow.classList.add('row');
 
   const zero = document.createElement('button');
   zero.classList.add('key');
@@ -157,7 +160,7 @@ function createKeyboard() {
   addition.classList.add('operator');
   addition.setAttribute('id', 'addition');
   addition.textContent = '+';
-  addition.addEventListener('click', () => populateDisplay(key.textContent));
+  addition.addEventListener('click', () => populateDisplay(addition.textContent));
   bottomRow.appendChild(addition);
 
   keyboard.appendChild(bottomRow);

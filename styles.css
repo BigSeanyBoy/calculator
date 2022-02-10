@@ -1,0 +1,67 @@
+@import url("https://fonts.googleapis.com/css2?family=Share+Tech+Mono&display=swap");
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: whitesmoke;
+}
+
+.calculator {
+  display: flex;
+  flex-direction: column;
+  width: 256px;
+  background-color: #303030;
+  padding: 20px;
+  border-radius: 8px;
+}
+
+.header {
+  color: whitesmoke;
+  padding-bottom: 5px;
+  text-align: center;
+}
+
+.keyboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.header,
+.output,
+button {
+  font-family: "Share Tech Mono", monospace;
+}
+
+.output {
+  background-color: whitesmoke;
+  margin-bottom: 8px;
+  height: 64px;
+  font-size: 48px;
+  text-align: right;
+  display: flex;
+  justify-content: end;
+  align-items: center;
+  overflow: hidden;
+}
+
+button {
+  height: 64px;
+  min-width: 64px;
+}
+
+.operator {
+  background-color: dimgrey;
+  color: whitesmoke;
+}
+
+#evaluate {
+  background-color: darkorange;
+}
+
+#clear {
+  background-color: #0d0dff;
+}
