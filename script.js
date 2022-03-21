@@ -137,8 +137,8 @@ function createKeyboard() {
   decimal.setAttribute('id', '.');
   decimal.textContent = '.';
   decimal.addEventListener('click', () => {
-    let textContent = document.querySelector('.output').textContent
-    let nonNumerical = textContent.replace(/[0-9]/g, '')
+    let textContent = document.querySelector('.output').textContent;
+    let nonNumerical = textContent.replace(/[0-9]/g, '');
     if (!textContent.includes('.') || (nonNumerical[0] == '.' && nonNumerical.length == 2)) {
       populateDisplay(decimal.textContent);
     }
