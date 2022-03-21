@@ -139,7 +139,7 @@ function createKeyboard() {
   decimal.addEventListener('click', () => {
     let textContent = document.querySelector('.output').textContent
     let nonNumerical = textContent.replace(/[0-9]/g, '')
-    if (!textContent.includes('.') || (nonNumerical[0] == '.' && nonNumerical.length == 2) {
+    if (!textContent.includes('.') || (nonNumerical[0] == '.' && nonNumerical.length == 2)) {
       populateDisplay(decimal.textContent);
     }
   });
