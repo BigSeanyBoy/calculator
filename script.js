@@ -38,7 +38,6 @@ function evaluate(expression) {
     }
   }
 
-  // change to 'array.reduce()' 
   ['*', '/', '+', '-'].forEach(operation => {
     while (operators.includes(operation)) {
       const index = operators.indexOf(operation);
@@ -138,7 +137,9 @@ function createKeyboard() {
   decimal.setAttribute('id', '.');
   decimal.textContent = '.';
   decimal.addEventListener('click', () => {
-    if (!document.querySelector('.output').textContent.split("").includes('.')) {
+    let textContent = document.querySelector('.output').textContent
+    let nonNumerical = textContent.replace(/[0-9]/g, '')
+    if (!textContent.includes('.') || (nonNumerical[0] == '.' && nonNumerical.length == 2) {
       populateDisplay(decimal.textContent);
     }
   });
